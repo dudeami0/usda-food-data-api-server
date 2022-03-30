@@ -1,0 +1,306 @@
+type AbridgedFoodItem {
+    dataType: String
+    description: String
+    fdcId: Int
+    foodNutrients: [AbridgedFoodNutrient]
+    publicationDate: String
+    gtinUpc: String
+    ndbNumber: String
+    foodCode: String
+}
+
+type AbridgedFoodNutrient {
+    number: Float
+    name: String
+    amount: Float
+    unitName: String
+    derivationCode: String
+    derivationDescription: String
+}
+
+type BrandedFoodItem {
+    fdcId: Int
+    availableDate: String
+    brandName: String
+    subbrandName: String
+    brandOwner: String
+    dataSource: String
+    dataType: String
+    description: String
+    foodClass: String
+    gtinUpc: String
+    householdServingFullText: String
+    ingredients: String
+    modifiedDate: String
+    publicationDate: String
+    marketCountry: String
+    packageWeight: String
+    servingSize: Float
+    servingSizeUnit: String
+    brandedFoodCategory: String
+    foodAttributes: [FoodAttribute]
+    foodNutrients: [FoodNutrient]
+    foodUpdateLog: [FoodUpdateLog]
+    labelNutrients: LabelNutrients
+}
+
+type FoodAttribute {
+    id: Int
+    sequenceNumber: Float
+    value: String
+    foodAttributeType: FoodAttributeType
+}
+
+type FoodAttributeType {
+    id: Int
+    name: String
+    description: String
+}
+
+type FoodCategory {
+    id: Int
+    code: String
+    description: String
+}
+
+type FoodComponent {
+    id: Int
+    name: String
+    dataPoints: Float
+    gramWeight: Float
+    isRefuse: Boolean
+    minYearAcquired: Float
+    percentWeight: Float
+}
+
+type FoodNutrient {
+    id: Int
+    amount: Float
+    dataPoints: Float
+    min: Float
+    max: Float
+    median: Float
+    type: String
+    nutrient: Nutrient
+    foodNutrientDerivation: FoodNutrientDerivation
+    nutrientAnalysisDetails: NutrientAnalysisDetails
+}
+
+type FoodNutrientDerivation {
+    id: Int
+    code: String
+    description: String
+    foodNutrientSource: FoodNutrientSource
+}
+
+type FoodNutrientSource {
+    id: Int
+    code: String
+    description: String
+}
+
+type FoodPortion {
+    id: Int
+    amount: Float
+    dataPoints: Float
+    gramWeight: Float
+    minYearAcquired: Float
+    modifier: String
+    portionDescription: String
+    sequenceNumber: Float
+    measureUnit: MeasureUnit
+}
+
+type FoodUpdateLog {
+    fdcId: Int
+    availableDate: String
+    brandOwner: String
+    dataSource: String
+    dataType: String
+    description: String
+    foodClass: String
+    gtinUpc: String
+    householdServingFullText: String
+    ingredients: String
+    modifiedDate: String
+    publicationDate: String
+    servingSize: Float
+    servingSizeUnit: String
+    brandedFoodCategory: String
+    changes: String
+    foodAttributes: [FoodAttribute]
+}
+
+type FoundationFoodItem {
+    fdcId: Int
+    dataType: String
+    description: String
+    foodClass: String
+    footNote: String
+    isHistoricalReference: Boolean
+    ndbNumber: String
+    publicationDate: String
+    scientificName: String
+    foodCategory: FoodCategory
+    foodComponents: [FoodComponent]
+    foodNutrients: [FoodNutrient]
+    foodPortions: [FoodPortion]
+    inputFoods: [InputFoodFoundation]
+    nutrientConversionFactors: [NutrientConversionFactors]
+}
+
+type InputFoodFoundation {
+    id: Int
+    foodDescription: String
+    inputFood: SampleFoodItem
+}
+
+type InputFoodSurvey {
+    id: Int
+    amount: Float
+    foodDescription: String
+    ingredientCode: Float
+    ingredientDescription: String
+    ingredientWeight: Float
+    portionCode: String
+    portionDescription: String
+    sequenceNumber: Float
+    surveyFlag: Float
+    retentionFactor: RetentionFactor
+}
+
+type LabelNutrients {
+    fat: LabelNutrientValue
+    saturatedFat: LabelNutrientValue
+    transFat: LabelNutrientValue
+    cholesterol: LabelNutrientValue
+    sodium: LabelNutrientValue
+    carbohydrates: LabelNutrientValue
+    fiber: LabelNutrientValue
+    sugars: LabelNutrientValue
+    protein: LabelNutrientValue
+    calcium: LabelNutrientValue
+    iron: LabelNutrientValue
+    potassium: LabelNutrientValue
+    calories: LabelNutrientValue
+}
+
+type LabelNutrientValue {
+    value: Float
+}
+
+type MeasureUnit {
+    id: Int
+    abbreviation: String
+    name: String
+}
+
+type Nutrient {
+    id: Int
+    number: String
+    name: String
+    rank: Float
+    unitName: String
+}
+
+type NutrientAcquisitionDetails {
+    sampleUnitId: Float
+    purchaseDate: String
+    storeCity: String
+    storeState: String
+}
+
+type NutrientAnalysisDetails {
+    subSampleId: Float
+    amount: Float
+    nutrientid: Int
+    labMethodDescription: String
+    labMethodOriginalDescription: String
+    labMethodLink: String
+    labMethodTechnique: String
+    nutrientAcquisitionDetails: [NutrientAcquisitionDetails]
+}
+
+type NutrientConversionFactors {
+    type: String
+    value: Float
+}
+
+type RetentionFactor {
+    id: Int
+    code: Float
+    description: String
+}
+
+type SampleFoodItem {
+    fdcId: Int
+    dataType: String
+    description: String
+    foodClass: String
+    publicationDate: String
+    foodAttributes: FoodCategory
+}
+
+type SRLegacyFoodItem {
+    fdcId: Int
+    dataType: String
+    description: String
+    foodClass: String
+    isHistoricalReference: Boolean
+    ndbNumber: String
+    publicationDate: String
+    scientificName: String
+    foodCategory: FoodCategory
+    foodNutrients: [FoodNutrient]
+    nutrientConversionFactors: [NutrientConversionFactors]
+}
+
+type SurveyFoodItem {
+    fdcId: Int
+    datatype: String
+    description: String
+    endDate: String
+    foodClass: String
+    publicationDate: String
+    startDate: String
+    foodAttributes: [FoodAttribute]
+    foodPortions: [FoodPortion]
+    inputFoods: [InputFoodSurvey]
+    wweiaFoodCategory: WweiaFoodCategory
+}
+
+type WweiaFoodCategory {
+    wweiaFoodCategoryCode: Float
+    wweiaFoodCategoryDescription: String
+}
+
+union FoodItem =
+      FoundationFoodItem
+    | BrandedFoodItem
+    | SurveyFoodItem
+    | SRLegacyFoodItem
+    | AbridgedFoodItem
+
+type Query {
+    food(fdcId: Int!): FoodItem
+    foods(fdcIds: [Int]!): [FoodItem]
+    foodList(
+        nutrients: [Int]
+        dataType: [String]
+        pageSize: Int
+        pageNumber: Int
+        sortBy: String
+        sortOrder: String
+        brandOwner: String
+    ): [FoodItem]
+    foodSearch(
+        query: String!
+        nutrients: [Int]
+        dataType: [String]
+        pageSize: Int
+        pageNumber: Int
+        sortBy: String
+        sortOrder: String
+        brandOwner: String
+    ): [FoodItem]
+}
