@@ -15,7 +15,7 @@ process.on("SIGINT", async () => {
     process.exit();
 });
 
-(async () => {
+async function bootstrap() {
     await db.start();
 
     const koa = new Koa();
@@ -36,4 +36,8 @@ process.on("SIGINT", async () => {
     await new Promise<void>((resolve) =>
         httpServer.listen({ port: options.port }, resolve)
     );
-})();
+}
+
+if (options.port > 0) {
+    bootstrap();
+}

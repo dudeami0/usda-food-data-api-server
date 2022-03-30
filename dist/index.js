@@ -13,7 +13,7 @@ process.on("SIGINT", async () => {
     await db.shutdown();
     process.exit();
 });
-(async () => {
+async function bootstrap() {
     await db.start();
     const koa = new Koa();
     const httpServer = http.createServer(koa.callback());
@@ -28,5 +28,8 @@ process.on("SIGINT", async () => {
     apollo.applyMiddleware({ app: koa });
     httpServer.on("request", koa.callback());
     await new Promise((resolve) => httpServer.listen({ port: options.port }, resolve));
-})();
+}
+if (options.port > 0) {
+    bootstrap();
+}
 //# sourceMappingURL=index.js.map

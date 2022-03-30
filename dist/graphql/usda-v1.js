@@ -1,7 +1,15 @@
 import { gql } from "apollo-server-core";
 import fs from "fs";
+import path from "path";
 import { getFood } from "../helpers/usda-v1.js";
-export const typeDefs = gql(String(fs.readFileSync("./schema.graphql")));
+const __dirname = (() => {
+    let path = new URL(".", import.meta.url).pathname;
+    if (process.platform === "win32") {
+        path = path.replace(new RegExp("^/", "g"), "");
+    }
+    return path;
+})();
+export const typeDefs = gql(String(fs.readFileSync(path.resolve(__dirname, "../../schema.graphql"))));
 export const resolvers = {
     FoodItem: {
         __resolveType(obj) {
